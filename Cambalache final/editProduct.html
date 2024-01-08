@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edition</title>
+    <link rel="stylesheet" href="style-index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="b_inicio">
+            <img id="logo" src="Images/logo.jpg" alt="">
+            <nav id="nav_inicio">
+                <ul>
+                    <li><a href="index.html" rel="noopener">Inicio</a></li>
+                    <li>|</li>
+                    <li><a href="cambalaches.html" rel="noopener">Cambalaches</a></li>     
+                    <li>|</li>        
+                    <li><a href="dashboard.html" rel="noopener">Dashboard</a></li>  
+                    <li><button type="button">Mi carrito</button></li>
+                </ul>      
+            </nav>         
+        </div>         
+    </header> 
+    <div class="container">
+        <h1>Edite el producto</h1>
+        <p id="p_user">User:</p><input id="p_owner" type="text" disabled="disable">
+        <p>Ingrese aquí la información del producto que desea editar en Cambalache.net.</p>
+        <p>--------------------------------------------</p>  
+        <input id="i_nombre_producto" type="text" placeholder="Nombre del producto" required><br>
+        <input id= "i_descripcion" class="i_descripciones" type="text" placeholder="Descripción" required><br>
+        <input id="i_foto" type="text" placeholder="http://google.com/Imagen.png" required><br>
+        <input id="i_busco" class="i_descripciones" type="text" placeholder="Busco" required><br> 
+        <select id="topic_select">
+            <option>Electronicos</option>
+            <option>Hogar</option>
+            <option>Negocio</option>
+        </select>
+        <p>-------------------------------------------------------------------------------------------------</p>
+        <button id="b_buscador" type="submit">Guardar</button>
+        <button type="reset">Cancelar</button>       
+    </div>       
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="index.html" rel="noopener">Inicio</a></li>
+                <li>|</li>
+                <li><a href="cambalaches.html" rel="noopener">Cambalaches</a></li>     
+            </ul>      
+        </nav> 
+        <img id="cr" src="Images/copyright.png" alt="">
+        <p>Cambalache.net</p> 
+    </footer>
+    <script>
+        const valores = window.location.search;
+        const urlParams = new URLSearchParams(valores);
+        let id_product= urlParams.get('parametro1');
+        function loadProductInformation(){
+            let num = parseInt(id_product);
+            let resta = num+1;
+            let id_def = resta.toString();
+
+            let products = JSON.parse(localStorage.getItem('products'));
+
+            if(products){
+                products.forEach((product) =>{
+                    if(id_def == product.id){
+                        $('#i_nombre_producto').val(product.name);
+                        $('#i_descripcion').val(product.description);
+                        $('#i_foto').val(product.photo);
+                        $('#i_busco').val(product.expectation);    
+                        
+                        $('#topic_select option').each(function(){ 
+                            if (this.value == product.category) { 
+                                $('#topic_select').prop('selectedIndex',this.index)
+                            }})
+
+                    }
+                })
+            }
+
+        }
+        function editingProduct(){
+            const nombre = $('#i_nombre_producto').val();
+            const descripcion = $('#i_descripcion').val();
+            const url = $('#i_foto').val();            
+            const busco = $('#i_busco').val();
+            const correo= $('#p_owner').val();
+            let topicSelect = $('#topic_select option:selected').text();
+
+            let products = JSON.parse(localStorage.getItem('products'));
+
+            products[id_product].name = nombre;
+            products[id_product].description = descripcion;
+            products[id_product].photo = url;
+            products[id_product].expectation = busco;
+            products[id_product].category = topicSelect;
+
+            localStorage.setItem('products', JSON.stringify(products));
+
+            sessionStorage.clear();
+            let session = JSON.parse(sessionStorage.getItem('data'));
+            if(!session) {
+                session = [];
+            }
+            if(products){
+                products.forEach((product) =>{
+                    if(correo == product.owner){
+                        const dat = {
+                            name: nombre,
+                            description: descripcion,
+                            photo: url,
+                            expectation: busco,
+                            owner: dueno,
+                            category: topicSelect,
+                            id: products_db.length + 1
+                        } 
+
+                    session.push(dat);
+                    sessionStorage.setItem('data', JSON.stringify(session));
+                    console.log(JSON.parse(sessionStorage.getItem('data')));
+                    }
+                })
+            }
+            alert("Usted ha editado un producto")
+            window.location.href = 'dashboard.html';
+
+        }
+        function loadOwner()
+        {
+            const loadUser = JSON.parse(sessionStorage.getItem('data'));
+            if(loadUser)
+            {
+                loadUser.forEach((data) =>{
+                    $("#p_owner").val(data.owner); 
+                })
+            }
+        }
+        $('#b_buscador').click(function(){
+            editingProduct();
+        });
+        loadProductInformation();
+        loadOwner();
+    </script>
+</body>
+</html>

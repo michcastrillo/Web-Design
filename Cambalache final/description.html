@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descripción</title>
+    <link rel="stylesheet" href="style-index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="b_inicio">
+            <img id="logo" src="Images/logo.jpg" alt="">
+            <nav id="nav_inicio">
+                <ul>
+                    <li><a href="index.html" rel="noopener">Inicio</a></li>
+                    <li>|</li>
+                    <li><a href="cambalaches.html" rel="noopener">Cambalaches</a></li>     
+                    <li><button type="button">Mi carrito</button></li>
+                </ul>      
+            </nav>     
+            <div class="topnav" onclick="myFunction()">
+                <button id="responsive_button" type="button">Menú</button>
+                <div id="myLinks"> 
+                    <a href="index.html">Inicio</a>
+                    <a href="cambalaches.html">Cambalaches</a>
+                    <a href="">Mi carrito</a>
+                </div>
+            </div>      
+        </div>         
+    </header> 
+    <div class="box">
+        <div id="photos_users">
+            
+        </div>  
+    </div>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="index.html" rel="noopener">Inicio</a></li>
+                <li>|</li>
+                <li><a href="cambalaches.html" rel="noopener">Cambalaches</a></li>     
+            </ul>      
+        </nav> 
+        <img id="cr" src="Images/copyright.png" alt="">
+        <p>Cambalache.net</p> 
+    </footer>
+    <script>
+        const valores = window.location.search;
+        const urlParams = new URLSearchParams(valores);
+        let id_product= urlParams.get('parametro1');
+        function myFunction() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+        function loadInfoProduct(){
+            let products = JSON.parse(localStorage.getItem('products'));
+            //$("#p_owner").val(categoria);
+            if(products){
+                products.forEach((product) =>{   
+                        
+                        if (product.id == id_product) { 
+                            var photo_db = '<figure class="f_descritas"><img id="img_descritas" src="'+product.photo+'" alt="">'+
+                            '<figcaption><p id="titulo_descripcion">'+product.name+'</p> ofrecido por: <a>'+product.owner+'</a>'+
+                            '<br>------------------------------------------------------------------------------------------------<h2>Descripción:</h2>'+
+                            product.description+'<h2>Busco:</h2>'+product.expectation+'<figure id="fg_descri"><p id="p_descri">-----------------</p>'+
+                            '<button type="button" id="b_buscador">Agregar</button></figure></figcaption></figure>';
+                            $('#photos_users').append(photo_db); 
+                        }})
+                    
+                
+            }
+        }
+        loadInfoProduct();
+    </script>
+</body>
+</html>

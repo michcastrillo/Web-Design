@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit book</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/template.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <section>
+        <div class="d-flex flex-column">
+          <h1>Edit a book</h1>
+          <div class="form-contact-info">
+            <div class="error_msg" id="error_msg"></div>
+            <form id="book-form">
+              <input type="text" class="form-input" name="title" value="" placeholder="Type book title" class="required" id="title"  />
+              <!-- <input type="text" name="author" value="" placeholder="Type your author" class="required" id="author" /> -->
+              <select name="authors-list" id="authors-list" class="form-input">
+              </select>
+              <input type="button" value="Add" id="add-book-button" />
+            </form>
+          </div>
+        </div>
+      </section>
+    <script>
+        const valores = window.location.search;
+        const urlParams = new URLSearchParams(valores);
+        let id_book = urlParams.get('parametro1');
+        function loadAuthors(){
+      // read authors from the database
+            const authors = JSON.parse(localStorage.getItem('authors'));
+
+            if(authors) {
+                let options = "";
+                authors.forEach((author) => {
+                options += `<option value="${author.id}">${author.name}</option>`;
+                })
+                // renders the select authors-list with the authors found
+                document.getElementById('authors-list').innerHTML = options;
+            }
+         }
+         function addBook(){
+            let num = parseInt(id_book);
+            let resta = num-1;
+            let id_def = resta.toString();
+
+            const bookName = $('#title').val();
+            let authorSelect = $('#authors-list option:selected').text();
+
+            let booksDb = JSON.parse(localStorage.getItem('books'));         
+    
+            booksDb[id_def].name = bookName;
+            booksDb[id_def].author = authorSelect;
+
+            localStorage.setItem('books', JSON.stringify(booksDb));
+            console.log(JSON.parse(localStorage.getItem('books')));
+            window.location.href = 'books.html';
+        }
+        $('#add-book-button').bind('click', function(){
+            addBook();
+         });
+         loadAuthors();
+    </script>
+</body>
+</html>

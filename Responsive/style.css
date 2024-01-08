@@ -1,0 +1,50 @@
+header{
+    background-color: yellow;
+    width: 100%;
+    text-align: center;
+}
+footer{
+    background-color: pink;
+    width: 100%;
+}
+.main{
+    color: white;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: auto auto auto;
+}
+#links{
+    background-color: orange;
+    padding: 18px;
+}
+.azules{
+    background-color: blue;
+    padding: 18px;
+}
+#derecha_2{
+    background-color: blue;
+    grid-column: 3;
+    padding: 18px;
+}
+@media only screen and (max-width: 600px) {
+	.main{
+        display: block;
+    }
+    #links{
+        margin-top:10px;
+    }
+    .azules{
+        margin-top:10px;
+    }
+    #derecha_2{
+        margin-top:10px;
+    }
+    div.main a{
+        display: none;
+    }
+}
+@media only screen and (min-width: 600px) {
+    div.main select{
+        display: none;
+    }
+}

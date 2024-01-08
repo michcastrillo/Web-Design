@@ -1,0 +1,272 @@
+body{
+    font-size: 12px;
+    Color: #606060;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1{
+    font-size: 16px;
+    font-weight: bold;
+} 
+
+h2{
+    font-size: 14px;
+    font-weight: bold;
+}
+button{
+    font-size: 11px;
+}
+
+p{
+    Padding: 10px;
+    margin:0px;
+}
+
+a{
+    font-size: 11px;
+    Color: #c95555;
+}
+
+.b_inicio{
+    width: 100%;
+}
+
+#logo{
+    width: 150px;
+}
+
+nav ul li{
+    display: inline-block;
+}
+#nav_inicio {
+    float: right;
+}
+nav button{
+    background-image: url(Images/carrito.png);
+    width: 84px;
+    display: inline-block;
+    color: white;
+    text-align: right;
+    background-size: 76px;
+}
+input[type="search"]{
+    width: 137px;
+    background: url(Images/lupa.jpg)no-repeat;
+    background-size: 27px;
+    padding-left: 32px;
+    height: 19px;
+}
+.buscador{
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+#b_buscador {
+    color: white;
+    background-color: #424949;
+    width: 68px;
+    margin-right: 5px;
+    margin-bottom: 50px;
+}
+.container{
+    text-align: center;
+    border-top:solid;
+    border-width: 1px;
+}
+footer{
+    text-align: center;
+    border-top:solid;
+    border-width: 1px;
+}
+footer p{
+    display: inline-block;
+}
+#cr{
+    width: 12px;
+}
+input[type=email] {
+    margin: 20px;
+}
+input[type=password] {
+    margin: 20px;
+}
+form button{
+    width: 68px;
+    margin-bottom: 50px;
+}
+input[type="text"] {
+    margin: 20px;
+}
+.i_address{
+    width: 375px;
+}
+select{
+    width: 167px;
+    height: 22px;
+    margin: 20px;
+}
+#p_login{
+    position: relative;
+    left: -67px;
+}
+#b_dashboard{
+    color:white;
+    background-color: #424949;
+    width: 68px;
+    margin: 20px;
+    position: relative;
+    right: 47%;
+}
+#i_nombre_producto{
+    position: relative;
+    right: 122px;
+}
+.i_descripciones{
+    width: 404px;
+    height: 67px;
+}
+#i_foto{
+    width: 404px;
+}
+.images{
+    width: 250px;
+    height: 250px;
+    margin: 12px;
+}
+.f_categorias {
+    display: inline-block;
+    margin: 31px;
+}
+.recientes{
+    width: 405px;
+    height: 368px;
+}
+.b_editar{
+    color:white;
+    background-color: #158d3b;
+    width: 68px; 
+    border: none;
+    margin-bottom: 36px;
+}
+.b_eliminar{
+    color:white;
+    background-color: #d92727;
+    width: 68px; 
+    border: none;
+}
+.f_descritas {
+    display: inline-flex;
+    align-items: center;
+}
+h3{
+    font-size: 13px;
+    font-weight: lighter;
+}
+#img_descritas{
+    width: 532px;
+    height: 471px;
+    margin-right: 49px;
+}
+.box{
+    border-top:solid;
+    border-width: 1px;
+}
+#titulo_descripcion{
+    font-size: 41px;
+    font-weight: lighter;
+}
+#fg_descri{
+    margin-top:40px;
+    margin-left: 0px;
+}
+#p_descri{
+    padding: 0px;
+}
+#p_owner {
+    display: inline-block;
+}
+#p_user {
+    display: inline-block;
+    font-weight: bold;
+}
+ul {
+    padding: 0px;
+}
+
+.lines_bienvenido{
+    display: inline-block;
+}
+@media only screen and (min-width: 800px) {
+    div.topnav{
+        display: none;
+    }
+    
+}
+@media only screen and (max-width: 800px) {
+	header nav ul li{
+        display: none;
+    }
+    .f_descritas{
+        align-items: center;
+        display: block;
+    }
+    .i_address{
+        width: 164px;
+    }
+    #i_nombre_producto{
+        position: relative;
+        right: 80px;
+    }
+    #b_dashboard{
+        margin: 80px;
+    }
+    #img_descritas{
+        width: 336px;
+        height: 401px;
+    }
+}
+
+  .topnav {
+    overflow: hidden;
+    float:right;
+  }
+  
+  .topnav #myLinks {
+    display: none;
+    background-color: #333;
+    position: absolute;
+    margin-top: 30px;
+    right: 14px;
+  }
+  
+  .topnav a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+  }
+  
+  
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .active {
+    background-color: #04AA6D;
+    color: white;
+  }
+#responsive_button{
+    float: left;
+    top: 8px;
+    position: relative;
+    margin: 6px;
+    width: 84px;
+    color: white;
+    height: 33px;
+    background-color: #606060;
+    font-size: 18px;
+}
+

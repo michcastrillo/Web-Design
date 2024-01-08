@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de usuario</h1>
+        <p>-----------------------------------------------------------------------------------------------</p>
+        <form>
+            <input type="text" id="name" placeholder="First name" required><br>
+            <input type="text" placeholder="Last name" id="last_name" required><br>
+            <input type="text" placeholder="Phone number" id="number" required><br>  
+            <p>-----------------------------------------------------------------------------------------------</p>   
+            <input type="submit" id="btn" value="Guardar" onclick="main()">
+            <button type="reset">Cancelar</button>
+        </form> 
+    </div>
+    <div class="d_tabla">
+        <h2>Usuarios registrados</h2>
+        <table id="users_table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Last name</th>
+                    <th>Phone number</th>
+                </tr>
+            </thead>
+        </table> 
+    </div>
+    <script> 
+        function save_localStorage() {
+            var user = {
+                name : document.getElementById('name').value,
+                last_name : document.getElementById('last_name').value,
+                number : document.getElementById('number').value
+            }
+
+            if(localStorage.getItem('users') == null) {
+                localStorage.setItem('users', '[]');
+            }
+
+            var old_data = JSON.parse (localStorage.getItem('users'));
+            old_data.push(user);
+
+            localStorage.setItem ("users", JSON.stringify(old_data));
+            tabla(user);
+        }
+
+        function clear_fields() {
+			document.getElementById('name').value = "";
+			document.getElementById('last_name').value = "";
+			document.getElementById('number').value = "";
+        }
+        function tabla(user){
+            var row = "<tr><td>"+user.name+"</td><td>"+user.last_name+"</td><td>"+user.number+"</td></tr>";
+            var table = document.getElementById("users_table");
+            table.innerHTML = table.innerHTML + row;
+        }
+       
+        function main() {
+            save_localStorage();
+            clear_fields();
+        }
+    </script>
+</body>
+</html>

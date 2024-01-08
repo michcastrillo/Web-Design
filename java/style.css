@@ -1,0 +1,51 @@
+body {
+    margin-top: 204px;
+    background-color: #BC8F8F;
+}
+h1 {
+    font-size: 52px;
+    margin-bottom: 0px;
+    font-family: OCR A Std, monospace;
+}
+h2{
+    font-size: 19px;
+    margin-bottom: 0px;
+    font-family: OCR A Std, monospace;
+}
+.container{
+    text-align: center;
+    border: solid;
+    padding-bottom: 34px;
+    margin-left: 411px;
+    margin-right: 411px;
+    background-color: white;
+}
+input[type="text"] {
+    border-radius: 10px;
+    margin: 7px;
+    padding: 9px;
+}
+.d_tabla{
+    background-color: white;
+    border: dotted;
+    width: 17%;
+    margin-top: -25px;
+    margin-left: 321px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+th, td{
+    border: solid;
+}
+@media only screen and (max-width: 1100px) {
+    div.container{
+        margin-left: 134px;
+        margin-right: 134px;
+    }
+    div.d_tabla{
+        margin-left: 56px;
+        width: 40%;
+    }
+} 

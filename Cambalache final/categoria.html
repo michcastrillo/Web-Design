@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorias</title>
+    <link rel="stylesheet" href="style-index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="b_inicio">
+            <img id="logo" src="Images/logo.jpg" alt="">
+            <nav id="nav_inicio">
+                <ul>
+                    <li><a href="index.html" rel="noopener">Inicio</a></li>
+                    <li><button type="button">Mi carrito</button></li>
+                </ul>      
+            </nav>      
+            <div class="topnav" onclick="myFunction()">
+                <button id="responsive_button" type="button">Menú</button>
+                <div id="myLinks">
+                    <a href="index.html">Inicio</a>
+                    <a href="">Mi carrito</a>
+                </div>
+            </div>   
+        </div>         
+    </header> 
+    <div class="container">
+        <h1>Cambalaches</h1>
+        <p>Categoría</p><input id="p_owner" type="text" disabled="disable">            
+    </div>
+    <div class="container">
+        <div id="photos_users">
+            
+        </div>  
+    </div>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="index.html" rel="noopener">Inicio</a></li>  
+                <li>|</li>        
+                <li><a href="login.html" rel="noopener">Ingresar</a></li>  
+            </ul>      
+        </nav> 
+        <img id="cr" src="Images/copyright.png" alt="">
+        <p>Cambalache.net</p> 
+    </footer>
+    <script>
+        const valores = window.location.search;
+        const urlParams = new URLSearchParams(valores);
+        let categoria= urlParams.get('parametro1');
+        function loadCategories(){
+            let products = JSON.parse(localStorage.getItem('products'));
+            $("#p_owner").val(categoria);
+            if(products){
+                products.forEach((product) =>{   
+                        
+                        if (product.category == categoria) { 
+                            var photo_db = ' <figure class="f_descritas"><a onclick="openDescription('+product.id+')"><img class="images" src="'+product.photo+'" alt=""></a><figcaption><h3>'+product.name+'</h3>'+product.owner+'</figcaption></figure>'
+                            $('#photos_users').append(photo_db ); 
+                        }})
+                    
+                
+            }
+        }
+        function myFunction() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+        function openDescription(id){
+            document.location.href = "description.html?parametro1=" + id;
+        }
+        loadCategories();
+    </script>
+</body>
+</html>

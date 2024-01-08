@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambalache</title>
+    <link rel="stylesheet" href="style-index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="b_inicio">
+            <img id="logo" src="Images/logo.jpg" alt="">
+            <nav id="nav_inicio">
+                <ul>
+                    <li><a href="cambalaches.html" rel="noopener">Cambalaches</a></li>     
+                    <li>|</li>        
+                    <li><a href="login.html" rel="noopener">Ingresar</a></li>  
+                    <li><button type="button">Mi carrito</button></li>
+                </ul>      
+            </nav>
+
+
+                <!-- Top Navigation Menu -->
+                <div class="topnav" onclick="myFunction()">
+                    <button id="responsive_button" type="button">Menú</button>
+                    <div id="myLinks">
+                        <a href="cambalaches.html">Cambalaches</a>
+                        <a href="login.html">Ingresar</a>
+                        <a href="">Mi carrito</a>
+                    </div>
+                </div>        
+        </div>         
+    </header> 
+    <div class="buscador">
+        <h1>Inicia tu cambalache</h1>
+        <p>----------------------</p>
+        <input type="search" placeholder="Buscar">
+        <button type="button" id="b_buscador">Buscar</button>
+    </div>
+    <div class="container">
+        <h1>Categorias</h1>
+        <p>¡Cambalache llega a todo el país! Realizá tus pedidos online.</p>
+        <figure id="section_electro" class="f_categorias">
+            <img class="images" src="Images/electronicos.jpeg" alt="">
+            <figcaption><h3>ELECTRONICOS</h3></figcaption>
+        </figure>
+        <figure id="section_hogar" class="f_categorias">
+            <img class="images" src="Images/hogar.jpg" alt="">
+            <figcaption><h3>HOGAR</h3></figcaption>
+        </figure>
+        <figure id="section_negocio" class="f_categorias">
+            <img class="images" src="Images/negocio.jpeg" alt="">
+            <figcaption><h3>NEGOCIO</h3></figcaption>
+        </figure>
+    </div>
+    <div class="container">
+        <h1>Cambalaches recientes</h1>     
+        <div id="photos_users">
+
+        </div>                      
+    </div>
+    <footer>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>|</li>
+                <li>About</li>     
+                <li>|</li>        
+                <li>Shop</li> 
+                <li>|</li>  
+                <li>Help</li>
+            </ul>      
+        </nav> 
+        <img id="cr" src="Images/copyright.png" alt="">
+        <p>Cambalache.net</p> 
+    </footer>
+    <script>
+        function loadLast(){
+            const products = JSON.parse(localStorage.getItem('products'));
+            let tamano = products.length;
+            let resta = tamano-1;
+            if(products){
+                products.forEach((product) =>{ 
+                    if(product.id==resta){
+                        var photo_db = ' <figure class="f_descritas"><a onclick="openDescription('+product.id+')"><img class="images" src="'+product.photo+'" alt=""></a><figcaption><h3>'+product.name+'</h3>'+product.owner+'</figcaption></figure>'
+                        $('#photos_users').append(photo_db ); 
+                    }else if(product. id== tamano){
+                        var photo_db = ' <figure class="f_descritas"><a onclick="openDescription('+product.id+')"><img class="images" src="'+product.photo+'" alt=""></a><figcaption><h3>'+product.name+'</h3>'+product.owner+'</figcaption></figure>'
+                        $('#photos_users').append(photo_db ); 
+                    }
+                })
+            }
+            
+        }
+        function myFunction() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+        function loadCategories(cat){
+            document.location.href = "categoria.html?parametro1=" + cat;
+        }
+        function openDescription(id){
+            document.location.href = "description.html?parametro1=" + id;
+        }
+        $('#section_electro').bind('click', function(){
+            let cat = "Electronicos";
+            loadCategories(cat);
+        });
+        $('#section_negocio').bind('click', function(){
+            let cat = "Negocio";
+            loadCategories(cat);
+        });
+        $('#section_hogar').bind('click', function(){
+            let cat = "Hogar";
+            loadCategories(cat);
+        });
+        loadLast();
+    </script>
+</body>
+</html>
